@@ -1,0 +1,14 @@
+.nrepl-history
+.nrepl-port
+\*cider-repl\ adventofcode\*
+/target
+/classes
+/checkouts
+pom.xml
+pom.xml.asc
+*.jar
+*.class
+/.lein-*
+/.nrepl-port
+.hgignore
+.hg/
