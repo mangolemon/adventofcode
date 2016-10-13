@@ -83,17 +83,19 @@
   [circuits instruction]
   (let [;; read an instruction wrapped by parens
         ;; as a list of words that are either symbols or long
-        words  (edn/read-string (str "(" instruction ")"))
+        words      (edn/read-string (str "(" instruction ")"))
 
-        ;; wire is the last item in the instruction list of words
-        ;; (e.g. x in (a AND b -> x))
-        wire   (last words)
-        ;;
+        ;; Symbol for "(signal) connect to (wire)" is ->
+        connect-to '->
+
+        ;; wire is the first word after connect-to Symbol in the instruction
+        ;; list of words (e.g. x in (a AND b -> x))
+        wire       (first (rest (drop-while #(not= connect-to %) words)))
 
         ;; a signal is what is provided to the wire and
         ;; a list of words up to '->
         ;; (e.g. (123) in (123 '-> 'x) or ('a 'AND 'b) in ('a 'AND 'b '-> 'x))
-        signal (drop-last 2 words)]
+        signal     (take-while #(not= connect-to %) words)]
 
     ;; If the main function accepts an input file other than provided
     ;; by the puzzle, validating its format such as existence of ->
