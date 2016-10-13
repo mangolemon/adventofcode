@@ -14,10 +14,6 @@
   :main adventofcode.day7
   :target-path "target/%s"
   :plugins [[cider/cider-nrepl "0.14.0-snapshot"]
-           ;; [lein-ancient "0.6.7"]
-           ; [lein-autoexpect "1.6.0"]
-           ; [lein-expectations "0.0.8"]
-           ; [lein-localrepo "0.5.3"]
             [refactor-nrepl "1.1.0"]]
   :profiles {:uberjar {:aot :all}}
   :resource-paths ["shared" "resources"])
