@@ -78,8 +78,7 @@
 (defn add-wire-signal-pair
   "Given circuits as a map of wire signal kv pair
    and circuit instruction as string,
-   return the circuits with the new wire-signal kv pair
-   based on the given instruction."
+   return the circuits with the new wire-signal kv pair."
   [circuits instruction]
   (let [;; read an instruction wrapped by parens
         ;; as a list of words that are either symbols or long
@@ -89,23 +88,14 @@
         connect-to '->
 
         ;; wire is the first word after connect-to Symbol in the instruction
-        ;; list of words (e.g. x in (a AND b -> x))
+        ;; (e.g. x in (a AND b -> x))
         wire       (first (rest (drop-while #(not= connect-to %) words)))
 
-        ;; a signal is what is provided to the wire and
-        ;; a list of words up to '->
+        ;; a signal is a list of words up to connect-to Symbol
         ;; (e.g. (123) in (123 '-> 'x) or ('a 'AND 'b) in ('a 'AND 'b '-> 'x))
         signal     (take-while #(not= connect-to %) words)]
 
-    ;; If the main function accepts an input file other than provided
-    ;; by the puzzle, validating its format such as existence of ->
-    ;; may be made here or right after reading the input file.
-    ;; (Future Wish List: Look into clojure.spec)
-    ;; (when (or (empty? words) (empty? signal) ... )
-    ;;   (throw (Exception. "Invalid signal and/or wire format.")))
-
     ;; add a new wire-signal pair to the circuits
-    ;; so that a signal can be looked up by a wire
     (assoc circuits wire signal)))
 
 
