@@ -12,7 +12,6 @@
 ;; Default input file contains 339 random instructions explained below.
 (def input-file-path "resources/input/day7.txt")
 
-
 ;; "Each wire has an identifier (some lowercase letters) and
 ;;  can carry a 16-bit signal (a number from 0 to 65535)."
 (def max-signal 65535)
@@ -61,7 +60,6 @@
     "NOT x -> h"
     "NOT y -> i"))
 
-
 ;; "After it (simple-circuit) is run, these are the signals on the wires:"
 (def simple-circuit-signals
   {'d 72
@@ -97,7 +95,6 @@
 
     ;; add a new wire-signal pair to the circuits
     (assoc circuits wire signal)))
-
 
 (defn all-circuits
   "Given instructions as a map of wire as Symbol and signal
@@ -262,7 +259,6 @@
     :id :part
     :parse-fn #(Integer/parseInt %)
     :validate [#{1 2} "Must be either 1 or 2."]]])
-
 
 (defn part2
   "Given lit signals from Part 1 and original circuits,
