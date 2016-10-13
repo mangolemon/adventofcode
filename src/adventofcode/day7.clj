@@ -10,12 +10,12 @@
 ;; The copy of the description is also found in /resources/puzzle/day7.txt
 
 ;; Default input file contains 339 random instructions explained below.
-(def ^:private input-file-path "resources/input/day7.txt")
+(def input-file-path "resources/input/day7.txt")
 
 
 ;; "Each wire has an identifier (some lowercase letters) and
 ;;  can carry a 16-bit signal (a number from 0 to 65535)."
-(def ^:private max-signal 65535)
+(def max-signal 65535)
 
 ;; "A signal is provided to each wire by a gate,
 ;;  another wire, or some specific value."
@@ -35,7 +35,7 @@
 
 ;; For example, here is a simple circuit:
 
-(def ^:private simple-circuit
+(def simple-circuit
 
   '(;; 123 -> x means that the signal 123 is provided to wire x.
     "123 -> x"
@@ -63,7 +63,7 @@
 
 
 ;; "After it (simple-circuit) is run, these are the signals on the wires:"
-(def ^:private simple-circuit-signals
+(def simple-circuit-signals
   {'d 72
    'e 507
    'f 492
@@ -144,7 +144,7 @@
 ;; --- Step 2. Apply Value Signals ---
 
 ;; Possible bitwise operations are NOT, AND, OR, LSHIFT, and RSHIFT
-(def ^:private op
+(def op
   {;; bitwise operation NOT for unsigned integers is
    ;; maximum value (e.g. 2^16) - a given integer
    'NOT    (fn [n] (- max-signal n))
@@ -262,7 +262,7 @@
       signals)))
 
 
-(def ^:private cli-options
+(def cli-options
   [["-e" "--example EXAMPLE" "Example"
     :id :example]
  ;; ["-w" "--wire WIRE" "Wire"
