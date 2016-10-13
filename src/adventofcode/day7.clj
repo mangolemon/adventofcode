@@ -280,12 +280,12 @@
        ;; "take the signal you got on wire a"
   (->> (all-signals 'a)
        ;; (the format of instructions for signal is a list of Symbol or number)
-       (list)
+       list
        ;; "override wire b to that signal and reset the other wires
        ;;  (including wire a)"
        (assoc all-circuits 'b)
        ;; re-assemble circuits
-       (assemble-circuits)))
+       assemble-circuits))
 
 
 (defn -main
