@@ -19,7 +19,7 @@
 
 ;; "A signal is provided to each wire by a gate,
 ;;  another wire, or some specific value."
-(defn- value-signal?
+(defn value-signal?
   "Given signal as Symbol or Long,
    return true if it is a number; false, otherwise."
   [signal]
@@ -75,7 +75,7 @@
 
 ;; --- Prep: Instructions to Circuits (Wire-Signal Pair) ---
 
-(defn- add-wire-signal-pair
+(defn add-wire-signal-pair
   "Given circuits as a map of wire signal kv pair
    and circuit instruction as string,
    return the circuits with the new wire-signal kv pair
@@ -109,7 +109,7 @@
     (assoc circuits wire signal)))
 
 
-(defn- all-circuits
+(defn all-circuits
   "Given instructions as a map of wire as Symbol and signal
    as a list of Symbols or numbers,
    return a map of wire-signal kv pair where a wire is an identifier and
@@ -122,7 +122,7 @@
 
 ;; --- Step 1. Find Value Signals ---
 
-(defn- process-value-signal
+(defn process-value-signal
   "This function takes two vectors. First, a vector of maps that are (solved)
    signals and (unsolved) circuits, respectively.  Second, a vector of wire
    as Symbol and signal as a list of words that are either Symbol or numeric
@@ -164,13 +164,13 @@
    ;; bitwise operation RSHIFT (takes value/wire and a number of bits)
    'RSHIFT bit-shift-right})
 
-(defn- get-identifiers
+(defn get-identifiers
   "Given instruction as a list of words that are either Symbol or numeric value,
   return a sequence of identifiers."
   [instruction]
   (remove #(or (op %) (value-signal? %)) instruction))
 
-(defn- signal->value-signal
+(defn signal->value-signal
   "Given signal as a list of one to three words that represent either gate or
    numeric value (i.e. assumption: no wire is included), return a value signal."
   [[word1 & [word2 word3]]]
@@ -194,7 +194,7 @@
     ;; compute value signal from this gate and a value signal
     ((op word1) word2)))
 
-(defn- apply-value-signals*
+(defn apply-value-signals*
   "This function takes two vectors. First, a vector of maps that are (solved)
    signals and (unsolved) circuits, respectively.  Second, a vector of wire
    as Symbol and signal as a list of words that are either Symbol or numeric
@@ -227,7 +227,7 @@
         [(conj signals {wire (signal->value-signal new-signal)})
          (dissoc circuits wire)]))))
 
-(defn- apply-value-signals
+(defn apply-value-signals
   "Given a vector of maps that represent signals and circuits,
    return a vector of maps such that signals and circuits are updated
    as follows:
@@ -242,7 +242,7 @@
 
 ;; --- Assemble Circuits ---
 
-(defn- assemble-circuits
+(defn assemble-circuits
   "Given (unsolved) circuits that is a map of wire and signal as kv pair,
    return all circuits are assembled, have signals, and are lit!"
   [circuits]
@@ -276,7 +276,7 @@
     :validate [#(or (= % 1) (= % 2)) "Must be either 1 or 2."]]])
 
 
-(defn- part2
+(defn part2
   "Given lit signals from Part 1 and original circuits,
    return the lit signals to solve Part 2"
   [all-signals all-circuits]
