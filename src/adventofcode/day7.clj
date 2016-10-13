@@ -149,7 +149,8 @@
 (def op
   {;; bitwise operation NOT for unsigned integers is
    ;; maximum value (e.g. 2^16) - a given integer
-   'NOT    (fn [n] (- max-signal n))
+   'NOT    (partial - max-signal)
+
    ;; equivalent to (fn [n] (+ max-signal (bit-not n) 1))
 
    ;; bitwise operation AND (takes two values/wires)
