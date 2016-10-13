@@ -214,7 +214,7 @@
       ;; return both signals and circuits as they are
       [signals circuits]
 
-      ;; if new signal list still has an identifier
+      ;; if new signal list has at least one identifier
       ;; (i.e. not a value signal or a symbol)
       (if (seq (get-identifiers new-signal))
 
