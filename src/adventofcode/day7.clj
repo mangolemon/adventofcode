@@ -303,23 +303,21 @@
                                               (get-lines input-file-path))
           all-circuits                      (all-circuits instructions)
           all-signals                       (assemble-circuits all-circuits)]
-      (cond
+
+      (case part
         ;; --- Part One ---
         ;; "what signal is ultimately provided to wire a?"
-        (= part 1) (println "Part 1: Signal value" (all-signals 'a)
-                            "is provided to wire a")
+        1 (println "Part 1: Signal value" (all-signals 'a) "is provided to wire a")
 
         ;; --- Part Two ---
         ;; "Now, take the signal you got on wire a, override wire b
         ;;  to that signal, and reset the other wires (including wire a).
         ;;  What new signal is ultimately provided to wire a?"
-        (= part 2) (println "Part 2: Signal value"
-                            ((part2 all-signals all-circuits) 'a)
-                            "is provided to wire a")
+        2 (println "Part 2: Signal value" ((part2 all-signals all-circuits) 'a)
+                   "is provided to wire a")
 
         ;; Prints the entire signals either for example or Part 1
-        :else      (println "All wires are assembled as follows:"
-                            all-signals)))
+        (println "All wires are assembled as follows:" all-signals)))
 
     (catch IOException e (println "IOException:" (.getMessage e)))
     (catch Exception e (println "Exception:" (.getMessage e)))))
