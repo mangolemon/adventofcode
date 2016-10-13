@@ -257,8 +257,8 @@
       ;; First, find all wires with value signals without a logic gate
       ;; and move them to the signals (solved) from the circuits (unsolved)
       ;; Second, apply the found value signals/wires to the remaining circuits
-      (recur (->> (reduce process-value-signal [signals circuits] circuits)
-                  (apply-value-signals)))
+      (recur (apply-value-signals
+              (reduce process-value-signal [signals circuits] circuits)))
       ;; When no more ciircuits left to assemble,
       ;; return the solved circuits with signals.
       signals)))
