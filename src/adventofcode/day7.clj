@@ -3,9 +3,8 @@
   (:require [adventofcode.core :refer [get-lines]]
             [clojure.edn :as edn]
             [clojure.tools.cli :as cli :refer [parse-opts]])
-  (:import  [java.io IOException]
-            [java.lang.Exception])
-  (:gen-class))
+  (:import  [java.io IOException]))
+
 
 ;; For complete puzzle description, http://adventofcode.com/2015/day/7
 ;; The copy of the description is also found in /resources/puzzle/day7.txt
