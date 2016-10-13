@@ -163,13 +163,11 @@
    ;; bitwise operation RSHIFT (takes value/wire and a number of bits)
    'RSHIFT bit-shift-right})
 
-(defn- has-identifier?
+(defn- get-identifiers
   "Given instruction as a list of words that are either Symbol or numeric value,
-   return true if the list contains at least one identifier (i.e. neither a gate
-   or a numeric value); false, otherwise."
+  return a sequence of identifiers."
   [instruction]
-  (->> (map #(boolean (or (op %) (value-signal? %))) instruction)
-       (some false?)))
+  (remove #(or (op %) (value-signal? %)) instruction))
 
 (defn- signal->value-signal
   "Given signal as a list of one to three words that represent either gate or
@@ -218,7 +216,7 @@
 
       ;; if new signal list still has an identifier
       ;; (i.e. not a value signal or a symbol)
-      (if (has-identifier? new-signal)
+      (if (seq (get-identifiers new-signal))
 
         ;; update the circuits with the new signal
         [signals (assoc circuits wire new-signal)]
