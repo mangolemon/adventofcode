@@ -267,9 +267,6 @@
 (def cli-options
   [["-e" "--example EXAMPLE" "Example"
     :id :example]
- ;; ["-w" "--wire WIRE" "Wire"
- ;;    :id :wire
- ;;    :parse-fn #(symbol %)]
    ["-p" "--part PART" "Part"
     :id :part
     :parse-fn #(Integer/parseInt %)
