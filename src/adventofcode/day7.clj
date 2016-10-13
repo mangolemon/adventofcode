@@ -270,7 +270,7 @@
    ["-p" "--part PART" "Part"
     :id :part
     :parse-fn #(Integer/parseInt %)
-    :validate [#(or (= % 1) (= % 2)) "Must be either 1 or 2."]]])
+    :validate [#{1 2} "Must be either 1 or 2."]]])
 
 
 (defn part2
