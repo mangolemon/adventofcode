@@ -297,12 +297,12 @@
    No arguments will return the entire lit signals for Part 1."
   [& args]
   (try
-    (let [{:keys [example part]} (:options (cli/parse-opts args cli-options))
-          instructions           (if example
-                                   simple-circuit
-                                   (get-lines input-file-path))
-          all-circuits           (all-circuits instructions)
-          all-signals            (assemble-circuits all-circuits)]
+    (let [{{:keys [example part]} :options} (cli/parse-opts args cli-options)
+          instructions                      (if example
+                                              simple-circuit
+                                              (get-lines input-file-path))
+          all-circuits                      (all-circuits instructions)
+          all-signals                       (assemble-circuits all-circuits)]
       (cond
         ;; --- Part One ---
         ;; "what signal is ultimately provided to wire a?"
